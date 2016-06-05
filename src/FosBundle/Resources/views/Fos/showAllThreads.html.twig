@@ -1,0 +1,48 @@
+{% extends '::base.html.twig' %}
+
+    {% block body -%}
+      {{ parent() }}
+
+   <div class="col-sm-9" style="margin-top:60px; margin-left: 20px;">
+        {% set foo = 0 %}
+        {% set admin = 'admin' %}
+    {% for thread in threads %}
+
+   <h5><span class="glyphicon glyphicon-time"></span> Post by {{ thread.user }}, {{ datatime[foo] }}.</h5>
+        {% set foo = foo+1 %}
+    <p class="bg-primary"> Thread: {{ thread.name }}</p>
+
+    <p class="bg-info">Description: {{ thread.description }}</p>
+
+      <a href="{{ path('fos_fos_shwoallcomments', {'id':thread.id}) }}"class="btn btn-success btn-sm">
+             Add Comment to: {{thread.name}}</a>
+
+       {% if thread.user == asUser or admin == asUser %}
+
+          <a href="{{ path('fos_fos_edditthread', {'id':thread.id,'idd':category.id}) }}" class="btn btn-success btn-sm">
+            Edit Thread:{{thread.name}}</a>
+
+       {% endif %}
+
+       {% if thread.user == asUser or admin == asUser %}
+
+           <a href="{{ path('fos_fos_deletethread',{'id':thread.id, 'idd':category.id}) }}"class="btn btn-success btn-sm">
+            Delete Thread:{{ thread.name }}</a>
+
+       {% endif %}
+
+       {% else %}
+        <p>No tweet found</p>
+
+       {% endfor %}
+
+         <br>
+       <br>
+     <p class="bg-danger">Add new Thread to a:{{ category.name }} category</p>
+        <a href="{{ path('fos_fos_ferstaddthreads', {'id':category.id}) }}"  class="btn btn-danger btn-lg">{{category.name}}</a>
+</div>
+ <br>
+ <br>
+        <br>
+
+{% endblock %}

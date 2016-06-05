@@ -1,0 +1,36 @@
+{% extends '::base.html.twig' %}
+
+{% set foo = 1 %}
+    {% block body -%}
+      {{ parent() }}
+
+  <div class="col-sm-9" style="margin-top:60px; margin-left: 20px;">
+        <h5><span class="glyphicon glyphicon-time"></span> Post by {{ threads.user }}, {{ threaddatatime }}.</h5>
+        <p class="bg-primary"> Thread: {{ threads.name }}</p>
+        <p class="bg-info">Description: {{ threads.description }}</p>
+
+        <h4>Leave a Comment:</h4>
+        <form role="form" action="{{ path('fos_fos_edditthread') }}">
+            <div class="form-group">
+                <textarea class="form-control" name="comment" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+        <br>
+        <p><span class="badge">{{ numberofcomments }}</span> Comments:</p><br>
+   {% for comment in comments %}
+      <p class="bg-danger">Comment Nr:{{ foo }}</p>
+       <h5><span class="glyphicon glyphicon-time"></span> Post by {{ comment.name }}, {{ commentsdatatime[foo] }}.</h5>
+          {% set foo = foo+1 %}
+       <p class="bg-primary"> Name: {{ comment.name }}</p>
+   <p class="bg-info">Comments: {{ comment.descriptionn }}</p>
+    <p>Edit Comments </p>
+  {# <a href="{{ path('fos_fos_edditthread', {'id':comment.id}) }}">{{ comment.name}}</a> #}
+     {% else %}
+    <p>No cooments found</p>
+    {% endfor %}
+  <p>Add a comments to Thread name:</p><a href="{{ path('fos_fos_ferstaddcomments', {'id':threads.id}) }}">{{threads.name}}</a>
+
+   </div>
+
+    {% endblock %}

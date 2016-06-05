@@ -1,0 +1,31 @@
+{% extends '::base.html.twig' %}
+
+
+{% block body -%}
+ {{ parent() }}
+
+    <div class="col-sm-9" style="margin-top: 60px; margin-left: 20px">
+
+
+        <h1 style="margin-bottom: 40px;">Show All Categories</h1>
+
+        {% for categorie in categories %}
+
+            <a href="{{ path('fos_fos_showall', {'id':categorie.id}) }}" style="margin-left:20px; margin-top: 20px;" class="btn btn-success btn-lg"
+              >{{categorie.name}}</a>
+
+        {% else %}
+            <p>No categorie found</p>
+
+        {% endfor %}
+
+        <br>
+        <h1 style="margin-bottom: 20px; margin-top:60px;">Add New Category</h1>
+        <a href="{{ path('fos_fos_createcategories') }}" style="margin-left:20px; margin-top: 20px;" class="btn btn-success btn-lg">
+            Add New Category</a>
+
+
+    </div>
+
+
+{% endblock %}

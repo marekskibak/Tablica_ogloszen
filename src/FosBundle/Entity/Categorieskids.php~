@@ -1,0 +1,44 @@
+<?php
+
+namespace FosBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Categorieskids
+ *
+ * @ORM\Table()
+ * @ORM\Entity
+ */
+class Categorieskids
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var
+     * 
+     * @ORM\ManyToOne(targetEntity="Categories", inversedBy="Categorieskids")
+     * 
+     */
+    private $categories;
+    
+    
+    
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

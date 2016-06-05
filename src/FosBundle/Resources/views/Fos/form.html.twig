@@ -1,0 +1,24 @@
+{% extends '::base.html.twig' %}
+
+
+  {% block stylesheets %}
+    {{ parent() }}
+    {% endblock %}
+
+
+{% block body -%}
+    {{ parent() }}
+
+
+    <h1 style="margin-top:50px;">Add New Category</h1>
+
+
+    {% form_theme form 'bootstrap_3_layout.html.twig' %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+
+
+
+
+{% endblock %}

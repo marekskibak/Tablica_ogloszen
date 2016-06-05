@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+
+
+{% block head %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+  div.position {position: relative;
+      width: 1265px;
+      height: 800px;
+      border: 3px solid #73AD21;
+  }
+  </style>
+{% endblock %}
+{% endblock %}
+
+
+{% block body -%}
+{{ parent() }}
+
+    <div class="position">
+
+    </div>
+
+
+
+
+{% endblock %}
